@@ -1,10 +1,18 @@
----
-layout: layouts/base.njk
-templateClass: tmpl-post
----
+{% extends "layouts/base.njk" %} 
+
+{% block content %}
 <article>
   <h1>{{ post.title }}</h1>
-  <p>Written by {% for author in post.authors %}{{author.name}}{% endfor %}  </p>
+
+  <img src="{%  imageUrlFor post.mainImage, 900  %}" alt="{{ post.mainImage.alt }}">
+
+  <p> 
+    Written by 
+    {% for author in post.authors %}
+      <a href="/authors/{{author.slug.current}}">{{author.name}}</a> 
+    {% endfor %}  
+  </p>
   {{ post.body | markdownify | safe }}
   <p><a href="{{ '/' | url }}">← Home</a></p>
 </article>
+{% endblock %}

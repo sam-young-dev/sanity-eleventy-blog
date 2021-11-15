@@ -8,7 +8,8 @@ const hasToken = !!client.config().token
 function generatePost (post) {
   return {
     ...post,
-    body: BlocksToMarkdown(post.body, { serializers, ...client.config() })
+    excerpt: BlocksToMarkdown(post.excerpt, { serializers, ...client.config() }),
+    body: BlocksToMarkdown(post.body, { serializers, ...client.config() }),
   }
 }
 
@@ -20,6 +21,8 @@ async function getPosts () {
     publishedAt,
     title,
     slug,
+    excerpt,
+    mainImage,
     body[]{
       ...,
       children[]{
@@ -38,8 +41,8 @@ async function getPosts () {
   const query = [filter, projection, order].join(' ')
   const docs = await client.fetch(query).catch(err => console.error(err))
   const reducedDocs = overlayDrafts(hasToken, docs)
-  const preparePosts = reducedDocs.map(generatePost)
-  return preparePosts
+  const preparePosts = reducedDocs.map(generatePost);
+  return preparePosts;
 }
 
 module.exports = getPosts

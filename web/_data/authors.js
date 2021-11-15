@@ -18,6 +18,8 @@ async function getAuthors () {
   const docs = await client.fetch(filter).catch(err => console.error(err))
   const authors = docs.map(generateAuthor)
   const reducedAuthors = overlayDrafts(hasToken, authors)
+
+  // console.log(reducedAuthors);
   return reducedAuthors
 }
 

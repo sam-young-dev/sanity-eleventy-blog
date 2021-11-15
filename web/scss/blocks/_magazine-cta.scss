@@ -1,0 +1,41 @@
+.magazine {
+  --hero-height: 100%;
+  --flow-space: 0;
+  
+  &__content {
+    --flow-space: var(--step-1);
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    color: #fff;
+    padding: 1rem;
+    background: transparent;
+  }
+
+  .subtitle {
+    font-family: var(--font-sans);   
+  }
+
+  &__post {
+    &-item {
+      list-style-type: none;
+      
+      &__link {
+        color: white; 
+        text-decoration: none; 
+
+        &:hover {
+          color: var(--primary);
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    --hero-height: 90vh;
+
+    .magazine__content-item + .magazine__content-item {
+      margin-left: 2rem;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<div class="[ post-list ] [ wrapper flow ]">
+  {% for post in posts %}
+    {% set currentPost = post.data.post %}
+    {# {% set author = helpers.filterCollectionByKey(collections.people, post.data.authorKey) %} #}
+
+    <div class="post-list__item">
+      <div class="c-block__media">
+        <a href={{ post.url }} class="c-block__media-link">
+          <img src="{% croppedUrlFor currentPost.mainImage, 600, 600 %}" alt="{{ currentPost.mainImage.alt }}">
+        </a>
+      </div>
+
+      <div class="content">
+        {# {% if showTag %}
+        <p class="tag link-secondary">
+          <a href="/{{ post.data.tags[0] }}/">{{ post.data.tags[0] }}</a>
+        </p>
+        {% endif %}  #}
+        <h3 class="heading link-secondary">
+          <a href={{ post.url | url }}>{{ currentPost.title }}</a>
+        </h3>
+        {# <p class="description">{{ post.data.description }}</p> #}
+
+        <div class="post-meta">
+          <p class="author">{{ author.data.name }}</p>
+          <time class="date" datetime="{{ currentPost.publishedAt | w3DateFilter }}">{{ currentPost.publishedAt | mediumDateFilter }}</time>
+        </div>
+        <div class="hr"></div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
