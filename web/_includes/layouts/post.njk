@@ -13,6 +13,13 @@
     {% endfor %}  
   </p>
   {{ post.body | markdownify | safe }}
+
+  <ul>
+    {% for category in post.categories %}
+      <li>{{ category.title }}</li>
+    {% endfor %}
+  </ul>
+
   <p><a href="{{ '/' | url }}">← Home</a></p>
 </article>
 {% endblock %}

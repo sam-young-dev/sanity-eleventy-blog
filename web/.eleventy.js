@@ -71,7 +71,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("markdownify", function(value) {
     const md = new markdownIt(options)
     return md.render(value)
-  })
+  });
+
+  eleventyConfig.addPassthroughCopy('images');
+
   return {
     templateFormats: [
       "md",

@@ -35,13 +35,16 @@ async function getPosts () {
         }
       }
     },
-    "authors": authors[].author->
+    "authors": authors[].author->,
+    "categories": categories[].category->,
   }`
   const order = `| order(publishedAt asc)`
   const query = [filter, projection, order].join(' ')
   const docs = await client.fetch(query).catch(err => console.error(err))
   const reducedDocs = overlayDrafts(hasToken, docs)
   const preparePosts = reducedDocs.map(generatePost);
+
+  console.log(preparePosts[0])
   return preparePosts;
 }
 
