@@ -47,7 +47,7 @@ async function getPosts () {
   const reducedDocs = overlayDrafts(hasToken, docs)
   const preparePosts = reducedDocs.map(generatePost);
 
-  console.log(preparePosts[0])
+  // console.log(preparePosts[0])
   return preparePosts;
 }
 

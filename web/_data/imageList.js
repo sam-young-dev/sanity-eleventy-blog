@@ -9,7 +9,7 @@ async function getImages () {
   const docs = await client.fetch(filter).catch(err => console.error(err))
   const reducedImages = overlayDrafts(hasToken, docs)
 
-  console.log(reducedImages);
+  // console.log(reducedImages);
   return reducedImages;
 }
 

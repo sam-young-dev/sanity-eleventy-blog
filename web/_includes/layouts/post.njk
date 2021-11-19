@@ -23,7 +23,7 @@
 
   {% for category in post.categories %}
     <div class="post-meta">
-      <a href="/categories/{{ category.slug.current}}">{{ category.title }}</a>
+      <a href="/categories/{{ category.title | slug }}">{{ category.title }}</a>
     </div>
   {% endfor %}
 

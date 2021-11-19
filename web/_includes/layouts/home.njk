@@ -24,13 +24,12 @@
     {% include 'partials/components/section-intro.njk' %}
     {% include 'partials/components/post-list.njk' %}
 
-    {% for image in imageList %}
+    <!-- {% for image in imageList %}
       <p>{{ image.title }}</p>
       {% for i in image.image %}
-        <!-- <p>{{ i }}</p> -->
         <img src="{% croppedUrlFor i, 600, 600 %}" alt="{{ i.alt }}">
       {% endfor %}
-    {% endfor %}
+    {% endfor %} -->
 
     <div class="text-center">
       <a href="/posts/" class="btn">
