@@ -36,7 +36,10 @@ async function getPosts () {
       }
     },
     "authors": authors[].author->,
-    "categories": categories[].category->,
+    "categories": categories[]{
+      "title": ^->title,
+      "slug": ^->slug.current
+    }
   }`
   const order = `| order(publishedAt asc)`
   const query = [filter, projection, order].join(' ')

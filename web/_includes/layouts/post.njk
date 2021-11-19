@@ -1,24 +1,31 @@
 {% extends "layouts/base.njk" %} 
 
 {% block content %}
-<article>
-  <h1>{{ post.title }}</h1>
+<article class="[ post ] [ wrapper ] [ flow ]">
+  <h1 class="post__heading">{{ post.title }}</h1>
 
-  <img src="{%  imageUrlFor post.mainImage, 900  %}" alt="{{ post.mainImage.alt }}">
+  <div class="hero">
+    <img class="hero-image" src="{%  imageUrlFor post.mainImage, 900  %}" alt="{{ post.mainImage.alt }}">
+  </div>
 
-  <p> 
-    Written by 
-    {% for author in post.authors %}
-      <a href="/authors/{{author.slug.current}}">{{author.name}}</a> 
-    {% endfor %}  
-  </p>
-  {{ post.body | markdownify | safe }}
+  <div class="wrap">
+    <p> 
+      Written by 
+      {% for author in post.authors %}
+        <a href="/authors/{{author.slug.current}}">{{author.name}}</a> 
+      {% endfor %}  
+    </p>
+  </div>
 
-  <ul>
-    {% for category in post.categories %}
-      <li>{{ category.title }}</li>
-    {% endfor %}
-  </ul>
+  <div class="[ post-content ] [ wrap has-dropcap ] [ flow ]">
+    {{ post.body | markdownify | safe }}
+  </div>
+
+  {% for category in post.categories %}
+    <div class="post-meta">
+      <a href="/categories/{{ category.slug.current}}">{{ category.title }}</a>
+    </div>
+  {% endfor %}
 
   <p><a href="{{ '/' | url }}">← Home</a></p>
 </article>
