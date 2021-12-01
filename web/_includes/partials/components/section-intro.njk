@@ -1,0 +1,6 @@
+  <div class="[ section-intro ] [ flow text-center ]">
+    <div class="section-intro__heading">{{ introHeading }}</div>
+    {% if includeDate %}
+    <p class="section-intro__date">{{ page.date | htmlDateString }}</p>
+    {% endif %}
+  </div>

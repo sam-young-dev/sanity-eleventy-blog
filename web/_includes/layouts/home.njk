@@ -1,5 +1,41 @@
----
-layout: layouts/base.njk
-templateClass: tmpl-home
----
-{{ content | safe }}
+{% extends "layouts/base.njk" %} 
+ 
+{% set introHeading = "Latest" %}
+{% set posts = collections.myPosts %}
+{% set showTag = true %}
+
+{% block content %}
+  <div class="[ home ] [ flow ]">
+    <header class="hero">
+      <div class="hero__content">
+        <img src="/images/outside.svg" alt="Outside Online Logo">
+        <p>Today's Stories</p>
+        <!-- <ul>
+          {% for post in featuredPosts %}
+          <li class="hero-post-item">
+            <a class="hero-post-item__link" href={{ post.url }}>{{ post.data.title }}</a>
+          </li>
+          {% endfor %}
+        </ul> -->
+      </div>
+      <img class="hero__img" src={{ heroImage.src }} alt={{ heroImage.alt }} />
+    </header>
+
+    {% include 'partials/components/section-intro.njk' %}
+    {% include 'partials/components/post-list.njk' %}
+
+    <!-- {% for image in imageList %}
+      <p>{{ image.title }}</p>
+      {% for i in image.image %}
+        <img src="{% croppedUrlFor i, 600, 600 %}" alt="{{ i.alt }}">
+      {% endfor %}
+    {% endfor %} -->
+
+    <div class="text-center">
+      <a href="/posts/" class="btn">
+        See the archive
+        <span class="btn__arrow">→</span>
+      </a>
+    </div>
+  </div>
+{% endblock %}

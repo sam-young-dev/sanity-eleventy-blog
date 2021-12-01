@@ -1,0 +1,70 @@
+<ul class="products">
+  {% for item in products %}
+
+  <li class="product">
+    <img src={{item.image}} alt={{item.image}}>
+    <h2>{{ item.name }}</h2>
+    <p class="description">{{ item.description }}</p>
+    <p>{{ item.amount | currencyFilter }}</p>
+
+    <form id={{item.id}} action="" method="POST">
+      <label for="quantity">Quantity</label>
+      <input 
+        name="quantity"
+        id="quantity"
+        type="number" 
+        value="1"
+        min="1"
+        max="10" 
+      />
+
+      <input name="id" type="text" value={{item.id}} hidden />
+
+      <button type="submit" class="btn">Buy Now</button>
+    </form>
+  </li>
+
+  {% endfor %}
+</ul>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script type="module">
+  const products = document.querySelector('.products');
+  const forms = products.querySelectorAll('form');
+
+  forms.forEach(form => {
+    const handleSubmit = async(e) => {
+      e.preventDefault();
+
+      const form = new FormData(e.target);
+
+      const data = {
+        id: form.get('id'),
+        quantity: form.get('quantity')
+      };
+
+      console.log(data);
+
+      const response = await fetch('/.netlify/functions/checkout/create-checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      }).then(res => res.json());
+
+      console.log(response);
+
+      const stripe = Stripe(response.publishableKey);
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: response.sessionId,
+      });
+
+      if (error) {
+        console.error(error);
+      }
+    }
+
+    form.addEventListener('submit', handleSubmit);
+  });
+</script>

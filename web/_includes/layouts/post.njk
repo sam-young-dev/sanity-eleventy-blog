@@ -1,10 +1,32 @@
----
-layout: layouts/base.njk
-templateClass: tmpl-post
----
-<article>
-  <h1>{{ post.title }}</h1>
-  <p>Written by {% for author in post.authors %}{{author.name}}{% endfor %}  </p>
-  {{ post.body | markdownify | safe }}
+{% extends "layouts/base.njk" %} 
+
+{% block content %}
+<article class="[ post ] [ wrapper ] [ flow ]">
+  <h1 class="post__heading">{{ post.title }}</h1>
+
+  <div class="hero">
+    <img class="hero-image" src="{%  imageUrlFor post.mainImage, 900  %}" alt="{{ post.mainImage.alt }}">
+  </div>
+
+  <div class="wrap">
+    <p> 
+      Written by 
+      {% for author in post.authors %}
+        <a href="/authors/{{author.slug.current}}">{{author.name}}</a> 
+      {% endfor %}  
+    </p>
+  </div>
+
+  <div class="[ post-content ] [ wrap has-dropcap ] [ flow ]">
+    {{ post.body | markdownify | safe }}
+  </div>
+
+  {% for category in post.categories %}
+    <div class="post-meta">
+      <a href="/categories/{{ category.title | slug }}">{{ category.title }}</a>
+    </div>
+  {% endfor %}
+
   <p><a href="{{ '/' | url }}">← Home</a></p>
 </article>
+{% endblock %}

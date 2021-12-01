@@ -18,10 +18,13 @@
     "@sanity/block-content-to-markdown": "0.0.5",
     "@sanity/client": "^2.0.0",
     "clean-css": "^4.2.1",
+    "css.escape": "^1.5.1",
     "dotenv": "^8.2.0",
     "groq": "^0.142.0",
     "luxon": "^1.19.3",
     "markdown-it": "^10.0.0",
-    "markdown-it-anchor": "^5.2.5"
+    "markdown-it-anchor": "^5.2.5",
+    "node-sass": "^6.0.1",
+    "path": "^0.12.7"
   }
 }
