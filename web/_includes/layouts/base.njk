@@ -9,6 +9,9 @@
     
     <link rel="stylesheet" href="/css/main.css">
     
+    {% set css %}
+    {% include "style.css" %}
+    {% endset %}
     <style>
       {{css | cssmin | safe}}
     </style>
