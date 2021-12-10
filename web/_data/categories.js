@@ -32,8 +32,6 @@ async function getCategories() {
   const docs = await client.fetch(query).catch((err) => console.error(err));
   const categories = docs.map(generateCategory);
   const reducedCategories = overlayDrafts(hasToken, categories);
-
-  console.log(reducedCategories);
   return reducedCategories;
 }
 

@@ -10,6 +10,8 @@ const shortDateFilter = require('./filters/short-date-filter.js');
 const markdownFilter = require('./filters/markdown-filter.js');
 const w3DateFilter = require('./filters/w3-date-filter.js');
 const currencyFilter = require('./filters/currency-filter.js');
+const limitFilter = require('./filters/limit-filter.js');
+const excerptFilter = require('./filters/excerpt-filter.js');
 
 module.exports = function(eleventyConfig) {
 
@@ -37,6 +39,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter('markdownFilter', markdownFilter);
   eleventyConfig.addFilter('w3DateFilter', w3DateFilter);
   eleventyConfig.addFilter('currencyFilter', currencyFilter);
+  eleventyConfig.addFilter('limit', limitFilter);
+  eleventyConfig.addFilter("excerpt", excerptFilter);
 
   eleventyConfig.addShortcode('imageUrlFor', (image, width = "400") => {
     return urlFor(image)

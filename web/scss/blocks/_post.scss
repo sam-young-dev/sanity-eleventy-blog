@@ -1,4 +1,5 @@
 .post {
+  --hero-height: 25vh;
   margin-top: var(--step-1);
 
   &__heading {
@@ -17,11 +18,16 @@
   .hero {
     margin-top: 1.4rem;
   }
+
+  .post-meta-container {
+    display: flex;
+  }
   
   &__meta {
     font-size: var(--step--2);
     color: var(--gray-500);
     margin: var(--step-0) 0;
+    margin-right: .5rem;
   }
 
   &__content {
@@ -57,6 +63,7 @@
   &__footer {
     
     .post-tags {
+      margin-top: 1rem;
       display: flex;
       align-items: center;
 

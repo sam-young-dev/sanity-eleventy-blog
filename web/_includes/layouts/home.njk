@@ -10,13 +10,13 @@
       <div class="hero__content">
         <img src="/images/outside.svg" alt="Outside Online Logo">
         <p>Today's Stories</p>
-        <!-- <ul>
-          {% for post in featuredPosts %}
+        <ul>
+          {% for post in posts | limit(4) %}
           <li class="hero-post-item">
-            <a class="hero-post-item__link" href={{ post.url }}>{{ post.data.title }}</a>
+            <a class="hero-post-item__link" href={{ post.url }}>{{ post.data.post.title }}</a>
           </li>
           {% endfor %}
-        </ul> -->
+        </ul>
       </div>
       <img class="hero__img" src={{ heroImage.src }} alt={{ heroImage.alt }} />
     </header>
