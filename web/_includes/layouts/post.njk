@@ -1,32 +1,42 @@
 {% extends "layouts/base.njk" %} 
 
 {% block content %}
-<article class="[ post ] [ wrapper ] [ flow ]">
-  <h1 class="post__heading">{{ post.title }}</h1>
-
-  <div class="hero">
-    <img class="hero-image" src="{%  imageUrlFor post.mainImage, 900  %}" alt="{{ post.mainImage.alt }}">
+<article class="[ post ] [ flow ]">
+  <div class="wrapper">
+    <h1 class="post__heading">{{ post.title }}</h1>
   </div>
-
-  <div class="wrap">
+   
+  <div class="hero">
+    <img class="hero-image" src="{%  imageUrlFor post.mainImage, 950  %}" alt="{{ post.mainImage.alt }}">
+  </div>
+ 
+  <div class="wrap flow">
     <p> 
       Written by 
       {% for author in post.authors %}
         <a href="/authors/{{author.slug.current}}">{{author.name}}</a> 
       {% endfor %}  
     </p>
-  </div>
 
-  <div class="[ post-content ] [ wrap has-dropcap ] [ flow ]">
-    {{ post.body | markdownify | safe }}
-  </div>
-
-  {% for category in post.categories %}
-    <div class="post-meta">
-      <a href="/categories/{{ category.title | slug }}">{{ category.title }}</a>
+    <div class="[ post-content ] [ has-dropcap ] [ flow ]">
+      {{ post.body | markdownify | safe }}
     </div>
-  {% endfor %}
-
-  <p><a href="{{ '/' | url }}">← Home</a></p>
+ 
+    <footer class="post__footer">
+      <div class="post-tags">
+        {% if post.categories %}  
+        <p class="post-tags__heading">Filed To:</p>
+        <ul class="post-tags__list">
+          {% for category in post.categories %} 
+          <li class="post-tags__list-item"> 
+            <a class="link" href="/categories/{{ category.title | slug }}">{{ category.title }}</a>
+          </li> 
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <p class="attribution">Lead Photo: {{ heroImage.attribution }}</p>
+    </footer>
+  </div>
 </article>
 {% endblock %}

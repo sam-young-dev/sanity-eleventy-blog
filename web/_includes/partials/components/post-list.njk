@@ -11,28 +11,26 @@
       </div>
 
       <div class="content">
-        {# {% if showTag %}
+        {% if showTag %}
         <p class="tag link-secondary">
-          <a href="/{{ post.data.tags[0] }}/">{{ post.data.tags[0] }}</a>
+          <a href="/categories/{{ currentPost.categories[0].title | slug }}/">{{ currentPost.categories[0].title }}</a>
         </p>
-        {% endif %}  #}
+        {% endif %} 
         <h3 class="heading link-secondary">
           <a href={{ post.url | url }}>{{ currentPost.title }}</a>
         </h3>
-        {# <p class="description">{{ post.data.description }}</p> #}
+        <p class="description">{{ currentPost.body | excerpt  }}</p>
 
         <div class="post-meta">
-          <p class="author">{{ author.data.name }}</p>
+          <p class="author"> 
+            {# <a href="/authors/{{currentPost.authors[0].slug.current}}"> #}
+            {{currentPost.authors[0].name}}
+            {# </a>  #}
+          </p>
           <time class="date" datetime="{{ currentPost.publishedAt | w3DateFilter }}">{{ currentPost.publishedAt | mediumDateFilter }}</time>
         </div>
         <div class="hr"></div>
       </div>
-
-      {# {% for category in currentPost.categories %}
-      <div class="post-meta">
-        <a href="/categories/{{ category.slug | slug }}">{{ category.title }}</a>
-      </div>
-      {% endfor %} #}
     </div>
   {% endfor %}
 </div>
